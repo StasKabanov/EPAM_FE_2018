@@ -1,0 +1,407 @@
+﻿1)Улучшите готовый код кофеварки, который дан ниже: добавьте в кофеварку публичный метод stop(), который будет останавливать кипячение (через clearTimeout).
+
+###Решение: 
+  function CoffeeMachine(power) {
+  this.waterAmount = 0;
+
+  var WATER_HEAT_CAPACITY = 4200;
+  var timerId;
+  var self = this;
+
+  function getBoilTime() {
+    return self.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+  }
+
+  function onReady() {
+    alert( 'Кофе готово!' );
+  }
+
+  this.run = function() {
+    timerId = setTimeout(onReady, getBoilTime());
+  };
+
+  this.stop = function() {
+    clearTimeout(timerId)
+  };
+}
+
+var coffeeMachine = new CoffeeMachine(50000);
+coffeeMachine.waterAmount = 200;
+
+coffeeMachine.run();
+coffeeMachine.stop(); // кофе приготовлен не будет
+
+
+
+2) Напишите конструктор User для создания объектов:
+
+    С приватными свойствами имя firstName и фамилия surname.
+    С сеттерами для этих свойств.
+    С геттером getFullName(), который возвращает полное имя.
+
+
+###Решение:
+
+function User() {
+
+  var firstName, surname;
+
+  this.setFirstName = function(newFirstName) {
+    firstName = newFirstName;
+  };
+
+  this.setSurname = function(newSurname) {
+    surname = newSurname;
+  };
+
+  this.getFullName = function() {
+    return firstName + ' ' + surname;
+  }
+}
+
+var user = new User();
+user.setFirstName("Петя");
+user.setSurname("Иванов");
+
+alert( user.getFullName() ); // Петя Иванов
+
+
+3) Добавьте кофеварке геттер для приватного свойства power, чтобы внешний код мог узнать мощность кофеварки.
+
+###Решение:
+
+function CoffeeMachine(power, capacity) {
+  //...
+  this.setWaterAmount = function(amount) {
+    if (amount < 0) {
+      throw new Error("Значение должно быть положительным");
+    }
+    if (amount > capacity) {
+      throw new Error("Нельзя залить воды больше, чем " + capacity);
+    }
+
+    waterAmount = amount;
+  };
+
+  this.getWaterAmount = function() {
+    return waterAmount;
+  };
+
+  this.getPower = function() {
+    return power;
+  };
+}
+
+4) Добавьте кофеварке публичный метод addWater(amount), который будет добавлять воду.
+
+###Решение:
+
+function CoffeeMachine(power, capacity) {
+  var waterAmount = 0;
+
+  var WATER_HEAT_CAPACITY = 4200;
+
+  function getTimeToBoil() {
+    return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+  }
+
+  this.setWaterAmount = function(amount) {
+    if (amount < 0) {
+      throw new Error("Значение должно быть положительным");
+    }
+    if (amount > capacity) {
+      throw new Error("Нельзя залить больше, чем " + capacity);
+    }
+
+    waterAmount = amount;
+  };
+
+  this.addWater = function(amount) {
+    this.setWaterAmount(waterAmount + amount);
+  };
+
+  function onReady() {
+    alert( 'Кофе готов!' );
+  }
+
+  this.run = function() {
+    setTimeout(onReady, getTimeToBoil());
+  };
+
+}
+
+var coffeeMachine = new CoffeeMachine(100000, 400);
+coffeeMachine.addWater(200);
+coffeeMachine.addWater(100);
+coffeeMachine.addWater(300); // Нельзя залить больше..
+coffeeMachine.run();
+
+5) Создайте сеттер setOnReady, чтобы код снаружи мог назначить свой onReady, вот так:
+
+###Решение:
+
+function CoffeeMachine(power, capacity) {
+  var waterAmount = 0;
+
+  var WATER_HEAT_CAPACITY = 4200;
+
+  function getTimeToBoil() {
+    return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+  }
+
+  this.setWaterAmount = function(amount) {
+    // ... проверки пропущены для краткости
+    waterAmount = amount;
+  };
+
+  this.getWaterAmount = function(amount) {
+    return waterAmount;
+  };
+
+  function onReady() {
+    alert( 'Кофе готов!' );
+  }
+
+  this.setOnReady = function(newOnReady) {
+    onReady = newOnReady;
+  };
+
+  this.run = function() {
+    setTimeout(function() {
+      onReady();
+    }, getTimeToBoil());
+  };
+
+}
+
+var coffeeMachine = new CoffeeMachine(20000, 500);
+coffeeMachine.setWaterAmount(150);
+
+coffeeMachine.run();
+
+coffeeMachine.setOnReady(function() {
+  var amount = coffeeMachine.getWaterAmount();
+  alert( 'Готов кофе: ' + amount + 'мл' ); // Готов кофе: 150 мл
+});
+
+6) Из внешнего кода мы хотели бы иметь возможность понять – запущена кофеварка или нет.
+
+Для этого добавьте кофеварке публичный метод isRunning(), который будет возвращать true, если она запущена и false, если нет.
+
+
+###Решение:
+
+function CoffeeMachine(power, capacity) {
+  var waterAmount = 0;
+
+  var timerId;
+
+  this.isRunning = function() {
+    return !!timerId;
+  };
+
+  var WATER_HEAT_CAPACITY = 4200;
+
+  function getTimeToBoil() {
+    return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+  }
+
+  this.setWaterAmount = function(amount) {
+    // ... проверки пропущены для краткости
+    waterAmount = amount;
+  };
+
+  this.getWaterAmount = function(amount) {
+    return waterAmount;
+  };
+
+  function onReady() {
+    alert( 'Кофе готов!' );
+  }
+
+  this.setOnReady = function(newOnReady) {
+    onReady = newOnReady;
+  };
+
+  this.run = function() {
+    timerId = setTimeout(function() {
+      timerId = null;
+      onReady();
+    }, getTimeToBoil());
+  };
+
+}
+
+var coffeeMachine = new CoffeeMachine(20000, 500);
+coffeeMachine.setWaterAmount(100);
+
+alert( 'До: ' + coffeeMachine.isRunning() ); // До: false
+
+coffeeMachine.run();
+alert( 'В процессе: ' + coffeeMachine.isRunning() ); // В процессе: true
+
+coffeeMachine.setOnReady(function() {
+  alert( "После: " + coffeeMachine.isRunning() ); // После: false
+});
+
+7) В коде CoffeeMachine сделайте так, чтобы метод run выводил ошибку, если кофеварка выключена.
+
+###Решение:
+
+Изменим метод run следующим способом:
+
+this.run = function() {
+  if (!this._enabled) {
+    throw new Error("Кофеварка выключена");
+  }
+
+  setTimeout(onReady, 1000);
+};
+
+
+8) Когда кофеварку выключают – текущая варка кофе должна останавливаться.
+
+###Решение:
+
+function Machine(power) {
+      this._enabled = false;
+
+      this.enable = function() {
+        this._enabled = true;
+      };
+
+      this.disable = function() {
+        this._enabled = false;
+      };
+    }
+
+    function CoffeeMachine(power) {
+      Machine.apply(this, arguments);
+
+      var waterAmount = 0;
+      var timerId;
+
+      this.setWaterAmount = function(amount) {
+        waterAmount = amount;
+      };
+
+      function onReady() {
+        alert('Кофе готов!');
+      }
+
+      var parentDisable = this.disable;
+      this.disable = function() {
+        parentDisable.call(this);
+        clearTimeout(timerId);
+      }
+
+      this.run = function() {
+        if (!this._enabled) {
+          throw new Error("Кофеварка выключена");
+        }
+        timerId = setTimeout(onReady, 1000);
+      };
+
+    }
+
+    var coffeeMachine = new CoffeeMachine(10000);
+    coffeeMachine.enable();
+    coffeeMachine.run();
+    coffeeMachine.disable();
+
+9) Создайте класс для холодильника Fridge(power), наследующий от Machine, с приватным свойством food и методами addFood(...), getFood():
+
+###Решение:
+
+function Fridge(power) {
+  // унаследовать
+  Machine.apply(this, arguments);
+
+  var food = []; // приватное свойство food
+
+  this.addFood = function() {
+    if (!this._enabled) {
+      throw new Error("Холодильник выключен");
+    }
+    if (food.length + arguments.length > this._power / 100) {
+      throw new Error("Нельзя добавить, не хватает мощности");
+    }
+    for (var i = 0; i < arguments.length; i++) {
+      food.push(arguments[i]); // добавить всё из arguments
+    }
+  };
+
+  this.getFood = function() {
+    // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
+    return food.slice();
+  };
+
+}
+
+10) Добавьте в холодильник методы:
+
+    Публичный метод filterFood(func), который возвращает всю еду, для которой func(item) == true
+    Публичный метод removeFood(item), который удаляет еду item из холодильника.
+
+###Решение:
+
+function Machine(power) {
+  this._power = power;
+  this._enabled = false;
+
+  var self = this;
+
+  this.enable = function() {
+    self._enabled = true;
+  };
+
+  this.disable = function() {
+    self._enabled = false;
+  };
+}
+
+function Fridge(power) {
+  // унаследовать
+  Machine.apply(this, arguments);
+
+  var food = []; // приватное свойство food
+
+  this.addFood = function() {
+    if (!this._enabled) {
+      throw new Error("Холодильник выключен");
+    }
+    if (food.length + arguments.length >= this._power / 100) {
+      throw new Error("Нельзя добавить, не хватает мощности");
+    }
+    for (var i = 0; i < arguments.length; i++) {
+      food.push(arguments[i]); // добавить всё из arguments
+    }
+
+  };
+
+  this.getFood = function() {
+    // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
+    return food.slice();
+  };
+
+  this.filterFood = function(filter) {
+    return food.filter(filter);
+  };
+
+  this.removeFood = function(item) {
+    var idx = food.indexOf(item);
+    if (idx != -1) food.splice(idx, 1);
+  };
+}
+
+11) Переопределите метод disable холодильника, чтобы при наличии в нём еды он выдавал ошибку.
+
+###Решение:
+
+var parentDisable = this.disable;
+  this.disable = function() {
+    if (food.length) {
+      throw new Error("Нельзя выключить: внутри еда");
+    }
+    parentDisable();
+  };
