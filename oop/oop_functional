@@ -1,6 +1,6 @@
-1)Улучшите готовый код кофеварки, который дан ниже: добавьте в кофеварку публичный метод stop(), который будет останавливать кипячение (через clearTimeout).
+п»ї1)РЈР»СѓС‡С€РёС‚Рµ РіРѕС‚РѕРІС‹Р№ РєРѕРґ РєРѕС„РµРІР°СЂРєРё, РєРѕС‚РѕСЂС‹Р№ РґР°РЅ РЅРёР¶Рµ: РґРѕР±Р°РІСЊС‚Рµ РІ РєРѕС„РµРІР°СЂРєСѓ РїСѓР±Р»РёС‡РЅС‹Р№ РјРµС‚РѕРґ stop(), РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РѕСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ РєРёРїСЏС‡РµРЅРёРµ (С‡РµСЂРµР· clearTimeout).
 
-###Решение: 
+###Р РµС€РµРЅРёРµ: 
   function CoffeeMachine(power) {
   this.waterAmount = 0;
 
@@ -13,7 +13,7 @@
   }
 
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'РљРѕС„Рµ РіРѕС‚РѕРІРѕ!' );
   }
 
   this.run = function() {
@@ -29,18 +29,18 @@ var coffeeMachine = new CoffeeMachine(50000);
 coffeeMachine.waterAmount = 200;
 
 coffeeMachine.run();
-coffeeMachine.stop(); // кофе приготовлен не будет
+coffeeMachine.stop(); // РєРѕС„Рµ РїСЂРёРіРѕС‚РѕРІР»РµРЅ РЅРµ Р±СѓРґРµС‚
 
 
 
-2) Напишите конструктор User для создания объектов:
+2) РќР°РїРёС€РёС‚Рµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ User РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚РѕРІ:
 
-    С приватными свойствами имя firstName и фамилия surname.
-    С сеттерами для этих свойств.
-    С геттером getFullName(), который возвращает полное имя.
+    РЎ РїСЂРёРІР°С‚РЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё РёРјСЏ firstName Рё С„Р°РјРёР»РёСЏ surname.
+    РЎ СЃРµС‚С‚РµСЂР°РјРё РґР»СЏ СЌС‚РёС… СЃРІРѕР№СЃС‚РІ.
+    РЎ РіРµС‚С‚РµСЂРѕРј getFullName(), РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕР»РЅРѕРµ РёРјСЏ.
 
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function User() {
 
@@ -60,24 +60,24 @@ function User() {
 }
 
 var user = new User();
-user.setFirstName("Петя");
-user.setSurname("Иванов");
+user.setFirstName("РџРµС‚СЏ");
+user.setSurname("РРІР°РЅРѕРІ");
 
-alert( user.getFullName() ); // Петя Иванов
+alert( user.getFullName() ); // РџРµС‚СЏ РРІР°РЅРѕРІ
 
 
-3) Добавьте кофеварке геттер для приватного свойства power, чтобы внешний код мог узнать мощность кофеварки.
+3) Р”РѕР±Р°РІСЊС‚Рµ РєРѕС„РµРІР°СЂРєРµ РіРµС‚С‚РµСЂ РґР»СЏ РїСЂРёРІР°С‚РЅРѕРіРѕ СЃРІРѕР№СЃС‚РІР° power, С‡С‚РѕР±С‹ РІРЅРµС€РЅРёР№ РєРѕРґ РјРѕРі СѓР·РЅР°С‚СЊ РјРѕС‰РЅРѕСЃС‚СЊ РєРѕС„РµРІР°СЂРєРё.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function CoffeeMachine(power, capacity) {
   //...
   this.setWaterAmount = function(amount) {
     if (amount < 0) {
-      throw new Error("Значение должно быть положительным");
+      throw new Error("Р—РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј");
     }
     if (amount > capacity) {
-      throw new Error("Нельзя залить воды больше, чем " + capacity);
+      throw new Error("РќРµР»СЊР·СЏ Р·Р°Р»РёС‚СЊ РІРѕРґС‹ Р±РѕР»СЊС€Рµ, С‡РµРј " + capacity);
     }
 
     waterAmount = amount;
@@ -92,9 +92,9 @@ function CoffeeMachine(power, capacity) {
   };
 }
 
-4) Добавьте кофеварке публичный метод addWater(amount), который будет добавлять воду.
+4) Р”РѕР±Р°РІСЊС‚Рµ РєРѕС„РµРІР°СЂРєРµ РїСѓР±Р»РёС‡РЅС‹Р№ РјРµС‚РѕРґ addWater(amount), РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РґРѕР±Р°РІР»СЏС‚СЊ РІРѕРґСѓ.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -107,10 +107,10 @@ function CoffeeMachine(power, capacity) {
 
   this.setWaterAmount = function(amount) {
     if (amount < 0) {
-      throw new Error("Значение должно быть положительным");
+      throw new Error("Р—РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј");
     }
     if (amount > capacity) {
-      throw new Error("Нельзя залить больше, чем " + capacity);
+      throw new Error("РќРµР»СЊР·СЏ Р·Р°Р»РёС‚СЊ Р±РѕР»СЊС€Рµ, С‡РµРј " + capacity);
     }
 
     waterAmount = amount;
@@ -121,7 +121,7 @@ function CoffeeMachine(power, capacity) {
   };
 
   function onReady() {
-    alert( 'Кофе готов!' );
+    alert( 'РљРѕС„Рµ РіРѕС‚РѕРІ!' );
   }
 
   this.run = function() {
@@ -133,12 +133,12 @@ function CoffeeMachine(power, capacity) {
 var coffeeMachine = new CoffeeMachine(100000, 400);
 coffeeMachine.addWater(200);
 coffeeMachine.addWater(100);
-coffeeMachine.addWater(300); // Нельзя залить больше..
+coffeeMachine.addWater(300); // РќРµР»СЊР·СЏ Р·Р°Р»РёС‚СЊ Р±РѕР»СЊС€Рµ..
 coffeeMachine.run();
 
-5) Создайте сеттер setOnReady, чтобы код снаружи мог назначить свой onReady, вот так:
+5) РЎРѕР·РґР°Р№С‚Рµ СЃРµС‚С‚РµСЂ setOnReady, С‡С‚РѕР±С‹ РєРѕРґ СЃРЅР°СЂСѓР¶Рё РјРѕРі РЅР°Р·РЅР°С‡РёС‚СЊ СЃРІРѕР№ onReady, РІРѕС‚ С‚Р°Рє:
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -150,7 +150,7 @@ function CoffeeMachine(power, capacity) {
   }
 
   this.setWaterAmount = function(amount) {
-    // ... проверки пропущены для краткости
+    // ... РїСЂРѕРІРµСЂРєРё РїСЂРѕРїСѓС‰РµРЅС‹ РґР»СЏ РєСЂР°С‚РєРѕСЃС‚Рё
     waterAmount = amount;
   };
 
@@ -159,7 +159,7 @@ function CoffeeMachine(power, capacity) {
   };
 
   function onReady() {
-    alert( 'Кофе готов!' );
+    alert( 'РљРѕС„Рµ РіРѕС‚РѕРІ!' );
   }
 
   this.setOnReady = function(newOnReady) {
@@ -181,15 +181,15 @@ coffeeMachine.run();
 
 coffeeMachine.setOnReady(function() {
   var amount = coffeeMachine.getWaterAmount();
-  alert( 'Готов кофе: ' + amount + 'мл' ); // Готов кофе: 150 мл
+  alert( 'Р“РѕС‚РѕРІ РєРѕС„Рµ: ' + amount + 'РјР»' ); // Р“РѕС‚РѕРІ РєРѕС„Рµ: 150 РјР»
 });
 
-6) Из внешнего кода мы хотели бы иметь возможность понять – запущена кофеварка или нет.
+6) РР· РІРЅРµС€РЅРµРіРѕ РєРѕРґР° РјС‹ С…РѕС‚РµР»Рё Р±С‹ РёРјРµС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїРѕРЅСЏС‚СЊ вЂ“ Р·Р°РїСѓС‰РµРЅР° РєРѕС„РµРІР°СЂРєР° РёР»Рё РЅРµС‚.
 
-Для этого добавьте кофеварке публичный метод isRunning(), который будет возвращать true, если она запущена и false, если нет.
+Р”Р»СЏ СЌС‚РѕРіРѕ РґРѕР±Р°РІСЊС‚Рµ РєРѕС„РµРІР°СЂРєРµ РїСѓР±Р»РёС‡РЅС‹Р№ РјРµС‚РѕРґ isRunning(), РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ true, РµСЃР»Рё РѕРЅР° Р·Р°РїСѓС‰РµРЅР° Рё false, РµСЃР»Рё РЅРµС‚.
 
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -207,7 +207,7 @@ function CoffeeMachine(power, capacity) {
   }
 
   this.setWaterAmount = function(amount) {
-    // ... проверки пропущены для краткости
+    // ... РїСЂРѕРІРµСЂРєРё РїСЂРѕРїСѓС‰РµРЅС‹ РґР»СЏ РєСЂР°С‚РєРѕСЃС‚Рё
     waterAmount = amount;
   };
 
@@ -216,7 +216,7 @@ function CoffeeMachine(power, capacity) {
   };
 
   function onReady() {
-    alert( 'Кофе готов!' );
+    alert( 'РљРѕС„Рµ РіРѕС‚РѕРІ!' );
   }
 
   this.setOnReady = function(newOnReady) {
@@ -235,33 +235,33 @@ function CoffeeMachine(power, capacity) {
 var coffeeMachine = new CoffeeMachine(20000, 500);
 coffeeMachine.setWaterAmount(100);
 
-alert( 'До: ' + coffeeMachine.isRunning() ); // До: false
+alert( 'Р”Рѕ: ' + coffeeMachine.isRunning() ); // Р”Рѕ: false
 
 coffeeMachine.run();
-alert( 'В процессе: ' + coffeeMachine.isRunning() ); // В процессе: true
+alert( 'Р’ РїСЂРѕС†РµСЃСЃРµ: ' + coffeeMachine.isRunning() ); // Р’ РїСЂРѕС†РµСЃСЃРµ: true
 
 coffeeMachine.setOnReady(function() {
-  alert( "После: " + coffeeMachine.isRunning() ); // После: false
+  alert( "РџРѕСЃР»Рµ: " + coffeeMachine.isRunning() ); // РџРѕСЃР»Рµ: false
 });
 
-7) В коде CoffeeMachine сделайте так, чтобы метод run выводил ошибку, если кофеварка выключена.
+7) Р’ РєРѕРґРµ CoffeeMachine СЃРґРµР»Р°Р№С‚Рµ С‚Р°Рє, С‡С‚РѕР±С‹ РјРµС‚РѕРґ run РІС‹РІРѕРґРёР» РѕС€РёР±РєСѓ, РµСЃР»Рё РєРѕС„РµРІР°СЂРєР° РІС‹РєР»СЋС‡РµРЅР°.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
-Изменим метод run следующим способом:
+РР·РјРµРЅРёРј РјРµС‚РѕРґ run СЃР»РµРґСѓСЋС‰РёРј СЃРїРѕСЃРѕР±РѕРј:
 
 this.run = function() {
   if (!this._enabled) {
-    throw new Error("Кофеварка выключена");
+    throw new Error("РљРѕС„РµРІР°СЂРєР° РІС‹РєР»СЋС‡РµРЅР°");
   }
 
   setTimeout(onReady, 1000);
 };
 
 
-8) Когда кофеварку выключают – текущая варка кофе должна останавливаться.
+8) РљРѕРіРґР° РєРѕС„РµРІР°СЂРєСѓ РІС‹РєР»СЋС‡Р°СЋС‚ вЂ“ С‚РµРєСѓС‰Р°СЏ РІР°СЂРєР° РєРѕС„Рµ РґРѕР»Р¶РЅР° РѕСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊСЃСЏ.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function Machine(power) {
       this._enabled = false;
@@ -286,7 +286,7 @@ function Machine(power) {
       };
 
       function onReady() {
-        alert('Кофе готов!');
+        alert('РљРѕС„Рµ РіРѕС‚РѕРІ!');
       }
 
       var parentDisable = this.disable;
@@ -297,7 +297,7 @@ function Machine(power) {
 
       this.run = function() {
         if (!this._enabled) {
-          throw new Error("Кофеварка выключена");
+          throw new Error("РљРѕС„РµРІР°СЂРєР° РІС‹РєР»СЋС‡РµРЅР°");
         }
         timerId = setTimeout(onReady, 1000);
       };
@@ -309,41 +309,41 @@ function Machine(power) {
     coffeeMachine.run();
     coffeeMachine.disable();
 
-9) Создайте класс для холодильника Fridge(power), наследующий от Machine, с приватным свойством food и методами addFood(...), getFood():
+9) РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ РґР»СЏ С…РѕР»РѕРґРёР»СЊРЅРёРєР° Fridge(power), РЅР°СЃР»РµРґСѓСЋС‰РёР№ РѕС‚ Machine, СЃ РїСЂРёРІР°С‚РЅС‹Рј СЃРІРѕР№СЃС‚РІРѕРј food Рё РјРµС‚РѕРґР°РјРё addFood(...), getFood():
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function Fridge(power) {
-  // унаследовать
+  // СѓРЅР°СЃР»РµРґРѕРІР°С‚СЊ
   Machine.apply(this, arguments);
 
-  var food = []; // приватное свойство food
+  var food = []; // РїСЂРёРІР°С‚РЅРѕРµ СЃРІРѕР№СЃС‚РІРѕ food
 
   this.addFood = function() {
     if (!this._enabled) {
-      throw new Error("Холодильник выключен");
+      throw new Error("РҐРѕР»РѕРґРёР»СЊРЅРёРє РІС‹РєР»СЋС‡РµРЅ");
     }
     if (food.length + arguments.length > this._power / 100) {
-      throw new Error("Нельзя добавить, не хватает мощности");
+      throw new Error("РќРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ, РЅРµ С…РІР°С‚Р°РµС‚ РјРѕС‰РЅРѕСЃС‚Рё");
     }
     for (var i = 0; i < arguments.length; i++) {
-      food.push(arguments[i]); // добавить всё из arguments
+      food.push(arguments[i]); // РґРѕР±Р°РІРёС‚СЊ РІСЃС‘ РёР· arguments
     }
   };
 
   this.getFood = function() {
-    // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
+    // РєРѕРїРёСЂСѓРµРј РµРґСѓ РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ, С‡С‚РѕР±С‹ РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РЅРёРј РЅРµ РјРµРЅСЏР»Рё food
     return food.slice();
   };
 
 }
 
-10) Добавьте в холодильник методы:
+10) Р”РѕР±Р°РІСЊС‚Рµ РІ С…РѕР»РѕРґРёР»СЊРЅРёРє РјРµС‚РѕРґС‹:
 
-    Публичный метод filterFood(func), который возвращает всю еду, для которой func(item) == true
-    Публичный метод removeFood(item), который удаляет еду item из холодильника.
+    РџСѓР±Р»РёС‡РЅС‹Р№ РјРµС‚РѕРґ filterFood(func), РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµС‚ РІСЃСЋ РµРґСѓ, РґР»СЏ РєРѕС‚РѕСЂРѕР№ func(item) == true
+    РџСѓР±Р»РёС‡РЅС‹Р№ РјРµС‚РѕРґ removeFood(item), РєРѕС‚РѕСЂС‹Р№ СѓРґР°Р»СЏРµС‚ РµРґСѓ item РёР· С…РѕР»РѕРґРёР»СЊРЅРёРєР°.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 function Machine(power) {
   this._power = power;
@@ -361,26 +361,26 @@ function Machine(power) {
 }
 
 function Fridge(power) {
-  // унаследовать
+  // СѓРЅР°СЃР»РµРґРѕРІР°С‚СЊ
   Machine.apply(this, arguments);
 
-  var food = []; // приватное свойство food
+  var food = []; // РїСЂРёРІР°С‚РЅРѕРµ СЃРІРѕР№СЃС‚РІРѕ food
 
   this.addFood = function() {
     if (!this._enabled) {
-      throw new Error("Холодильник выключен");
+      throw new Error("РҐРѕР»РѕРґРёР»СЊРЅРёРє РІС‹РєР»СЋС‡РµРЅ");
     }
     if (food.length + arguments.length >= this._power / 100) {
-      throw new Error("Нельзя добавить, не хватает мощности");
+      throw new Error("РќРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ, РЅРµ С…РІР°С‚Р°РµС‚ РјРѕС‰РЅРѕСЃС‚Рё");
     }
     for (var i = 0; i < arguments.length; i++) {
-      food.push(arguments[i]); // добавить всё из arguments
+      food.push(arguments[i]); // РґРѕР±Р°РІРёС‚СЊ РІСЃС‘ РёР· arguments
     }
 
   };
 
   this.getFood = function() {
-    // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
+    // РєРѕРїРёСЂСѓРµРј РµРґСѓ РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ, С‡С‚РѕР±С‹ РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РЅРёРј РЅРµ РјРµРЅСЏР»Рё food
     return food.slice();
   };
 
@@ -394,14 +394,14 @@ function Fridge(power) {
   };
 }
 
-11) Переопределите метод disable холодильника, чтобы при наличии в нём еды он выдавал ошибку.
+11) РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚Рµ РјРµС‚РѕРґ disable С…РѕР»РѕРґРёР»СЊРЅРёРєР°, С‡С‚РѕР±С‹ РїСЂРё РЅР°Р»РёС‡РёРё РІ РЅС‘Рј РµРґС‹ РѕРЅ РІС‹РґР°РІР°Р» РѕС€РёР±РєСѓ.
 
-###Решение:
+###Р РµС€РµРЅРёРµ:
 
 var parentDisable = this.disable;
   this.disable = function() {
     if (food.length) {
-      throw new Error("Нельзя выключить: внутри еда");
+      throw new Error("РќРµР»СЊР·СЏ РІС‹РєР»СЋС‡РёС‚СЊ: РІРЅСѓС‚СЂРё РµРґР°");
     }
     parentDisable();
   };
